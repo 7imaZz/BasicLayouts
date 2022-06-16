@@ -60,7 +60,7 @@ private fun AlignYourBodyElement(
     @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally){
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
             painter = painterResource(image),
             contentDescription = "",
@@ -70,6 +70,35 @@ private fun AlignYourBodyElement(
             contentScale = ContentScale.Crop
         )
         Text(stringResource(id = text))
+    }
+}
+
+
+@Composable
+fun FavoriteCollectionCard(
+    @DrawableRes image: Int,
+    @StringRes text: Int,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = MaterialTheme.shapes.small,
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier.width(192.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = null,
+                Modifier.size(56.dp),
+                contentScale = ContentScale.Crop
+            )
+            Text(
+                text = stringResource(id = text),
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+        }
     }
 }
 
@@ -86,5 +115,17 @@ fun SearchBarPreview() {
 fun AlignYourBodyPreview() {
     BasicLayoutsTheme {
         AlignYourBodyElement(R.drawable.ic_launcher_background, R.string.app_name)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FavoriteCollectionCardPreview() {
+    BasicLayoutsTheme {
+        FavoriteCollectionCard(
+            R.drawable.fc2_nature_meditations,
+            R.string.fc2_nature_meditations,
+            modifier = Modifier.padding(8.dp)
+        )
     }
 }
